@@ -1,0 +1,88 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 11, 2016, 1:52:17 PM
+    Author     : alain.urlings
+*/
+
+
+/*
+Aanmelden
+*/
+
+
+
+/*
+Toonbank
+*/
+
+#toonbank {
+    display: flex;
+    width: 20em;
+    flex-direction:column;
+}
+div {
+    display: flex;
+}
+
+span {
+    width: 12em;
+}
+label {
+    width: 5em;
+}
+input[type="number"]{
+    width:3em;
+}
+
+    
+
+
+   
+   
+
+
+
+
+
+/*
+Winkelmandje
+*/
+
+table {
+    
+    width: 40em;
+}
+
+
+
+/*
+Block
+*/
+
+img {
+    width: 60%;
+    height: auto;
+    
+}
+
+/*
+Home
+*/
+
+/*#home {
+    position: fixed;
+    top: 0;
+    right: 0;
+   
+}*/
+#home input {
+     position: fixed;
+    top: 0;
+    right: 0;
+    width: 10em;
+    height: 5em;
+}
