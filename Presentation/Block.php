@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         
         <img src="img/wheat_allergy.jpg">
-        <p>Indien gebruik wenst te blijven maken van onze services contacteer admin@bakkerijPHP</p>
+        <p>Indien U gebruik wenst te blijven maken van onze services contacteer admin@bakkerijPHP</p>
         <?php
         // put your code here
         ?>

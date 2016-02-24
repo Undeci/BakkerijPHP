@@ -12,6 +12,7 @@ and open the template in the editor.
     <body>
         <?php
         var_dump($_POST);
+        var_dump($clean);
         ?>
     </body>
 </html>

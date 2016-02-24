@@ -13,12 +13,12 @@ and open the template in the editor.
     <body>
         <?php
 
-        $tomorrow = date("Y-m-d", strtotime("tomorrow"));
-        $tomorrowplusone = date("Y-m-d", strtotime("+2 Days"));
-        $maxafhaal = date("Y-m-d", strtotime("+3 Days"));
-        
-        $afhaal = array();
-        $afhaal =  array_diff(array($tomorrow, $tomorrowplusone, $maxafhaal), $afhaaldata);
+//        $tomorrow = date("Y-m-d", strtotime("tomorrow"));
+//        $tomorrowplusone = date("Y-m-d", strtotime("+2 Days"));
+//        $maxafhaal = date("Y-m-d", strtotime("+3 Days"));
+//        
+//        $afhaal = array();
+//        $afhaal =  array_diff(array($tomorrow, $tomorrowplusone, $maxafhaal), $afhaaldata);
     
         ?>
         
@@ -29,7 +29,7 @@ and open the template in the editor.
                   
             <?php 
             
-            foreach ($afhaal as $datum)
+            foreach ($afhaaldata["vrijedata"] as $datum)
                 echo '<option value="'. $datum .'">' . $datum . '</option>';
             ?>
                 </select> 

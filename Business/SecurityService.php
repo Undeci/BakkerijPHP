@@ -11,7 +11,7 @@ class SecurityService {
     public function clean($array) {
 
         foreach ($array as $key => $value) {
-            if (in_array(">", str_split($value)) or in_array("<", str_split($value))) {
+            if (preg_match("/<script>/i", $value)) {
                 if (isset($_SESSION["klant"]["klantid"])) {
                     $service = new KlantService();
                     $service->blockklant($_SESSION["klant"]["klantid"]);
