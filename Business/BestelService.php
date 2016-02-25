@@ -2,8 +2,6 @@
 
 namespace Business;
 
-//require_once 'Data/BestelDAO.php';
-
 use Data\BestelDAO;
 use Business\SecurityService;
 
@@ -27,10 +25,10 @@ class BestelService {
         }
     }
 
-    public function bestel($array) {
+    public function bestel() {
 
         $security = new SecurityService();
-        $clean = $security->clean($array);
+        $clean = $security->clean($_POST);
 
         $besteldao = new BestelDAO();
         $besteldao->bestel($_SESSION["klant"]["klantid"], $clean["afhaaldatum"], $_SESSION["bestelling"]);
