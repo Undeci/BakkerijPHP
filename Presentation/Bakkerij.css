@@ -41,13 +41,6 @@ input[type="number"]{
     
 
 
-   
-   
-
-
-
-
-
 /*
 Winkelmandje
 */
@@ -69,16 +62,6 @@ img {
     
 }
 
-/*
-Home
-*/
-
-/*#home {
-    position: fixed;
-    top: 0;
-    right: 0;
-   
-}*/
 #home input {
      position: fixed;
     top: 0;

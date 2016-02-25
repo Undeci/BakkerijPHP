@@ -11,6 +11,7 @@ and open the template in the editor.
         <link href="Presentation/Bakkerij.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+
         volgende bestellingen aktief:
         <?php
         $now = date("Y-m-d", strtotime("today"));

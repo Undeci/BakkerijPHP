@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require 'Autoloader.php';
 
@@ -17,7 +16,6 @@ if (isset($_POST["nieuwwachtwoord"])) {
 if (isset($_POST["registreer"])) {
     $service = new KlantService();
     $nieuweklant = $service->setKlant($_POST);
-
     if ($nieuweklant)
         header("location: klantcontroller.php?wachtwoord");
     else {
@@ -27,7 +25,6 @@ if (isset($_POST["registreer"])) {
 } elseif (isset($_POST["aanmelden"])) {
     $service = new KlantService();
     $service->verifieerklant($_POST);
-
     $bestel = new BestelService();
     $afhaaldata = $bestel->getafhaaldata();
 
@@ -36,7 +33,9 @@ if (isset($_POST["registreer"])) {
         $overzicht = $bestel->getbestelling();
         include_once 'Presentation/lopendebestelling.php';
         include_once 'Presentation/Home.html';
-    } elseif ($_SESSION["klant"]["voornaam"] && $_SESSION["klant"]["block"] == 0) {
+    } elseif ($_SESSION["klant"]["voornaam"] && $_SESSION["klant"]["block"] == 0) {        
+        $service = new BestelService();
+        $service->getprodukten();        
         include 'Presentation/toonbank.php';
         include 'Presentation/Home.html';
     } elseif (!$_SESSION["klant"]["voornaam"]) {
@@ -46,5 +45,7 @@ if (isset($_POST["registreer"])) {
         include_once 'Presentation/Block.php';
     }
 } else {
+    $service = new KlantService();
+    $postcodes = $service->getcities();
     include 'Presentation/Aanmelden.php';
 }

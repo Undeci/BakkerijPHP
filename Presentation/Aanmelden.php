@@ -1,14 +1,3 @@
-<?php
-
-require_once  'Business/KlantService.php';
-
-
-
-$service = new Business\KlantService();
-$postcodes = $service->getcities();
-
-?>
-
 <!DOCTYPE html>
 <html>
     <head>

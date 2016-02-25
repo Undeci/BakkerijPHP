@@ -6,6 +6,16 @@ use DBConfig;
 use PDO;
 
 class BestelDAO {
+    
+    public function getprodukten() {
+        
+        $sql = "select * from produkten";
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        $_SESSION["produkten"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+    }
 
     public function bestel($klantid, $afhaaldatum, $bestelling) {
 
@@ -21,10 +31,11 @@ class BestelDAO {
 
         $stmt2 = $dbh->prepare($sql2);
 
-        for ($i = 1; $i < 7; $i++) {
+         for ($i = 1; $i < count($bestelling); $i++) {
             if ($bestelling[$i] != 0)
                 $stmt2->execute(array(':aantal' => $bestelling[$i], ':bestelnr' => $bestelnr, ':produktid' => $i));
         }
+
         $dbh = null;
     }
 
