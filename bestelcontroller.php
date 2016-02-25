@@ -1,6 +1,8 @@
 <?php
-session_start();
+
 require 'Autoloader.php';
+session_start();
+
 
 use Business\SecurityService;
 use Business\BestelService;
@@ -27,7 +29,7 @@ if (isset($_POST["aanpassen"])) {
 }
 if (isset($_POST["bevestigen"])) { 
     $bestel = new BestelService();
-    $bestel->bestel($_POST);
+    $bestel->bestel();
     $bestel = new BestelService();
     $afhaaldata = $bestel->getafhaaldata();   
     $overzicht = $bestel->getbestelling();

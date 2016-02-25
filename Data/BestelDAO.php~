@@ -1,0 +1,58 @@
+<?php
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+class BestelDAO {
+
+    public function bestel($klantid, $afhaaldatum, $bestelling) {
+        
+        
+        $bedrag = $bestelling["totaal"];
+
+        $sql = "insert into bestelling (klantid, afhaaldatum, bedrag) values (:klantid, :afhaaldatum, :bedrag)";
+        $sql2 = "insert into bestelregel (aantal, bestelnr, produktid) values (:aantal, :bestelnr, :produktid)";
+        
+        $dbh = new PDO("mysql:host=localhost;dbname=bakkerij;charset=utf8", "root", "");
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute(array(':klantid' => $klantid, ':afhaaldatum' => $afhaaldatum, ':bedrag' => $bedrag));
+        $bestelnr = $dbh->lastInsertId();
+      
+        $stmt2 = $dbh->prepare($sql2);
+        
+        for ($i=1; $i<7; $i++) {
+            if ($bestelling[$i] != 0)
+        $stmt2->execute(array(':aantal' => $bestelling[$i], ':bestelnr' => $bestelnr, ':produktid' => $i));       
+        }   
+    }
+    
+    public function getafhaaldatabyklantid($klantid) {
+        
+        $now = date("Y-m-d", strtotime("today"));
+
+        
+        $sql = "select afhaaldatum from bestelling where klantid = :klantid and afhaaldatum >= CURDATE() ";
+         $dbh = new PDO("mysql:host=localhost;dbname=bakkerij;charset=utf8", "root", "");
+         $stmt = $dbh->prepare($sql);
+         $stmt->execute(array(':klantid' => $klantid));  
+        $afhaaldata = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        
+        return $afhaaldata;
+    }
+    
+    public function getbestelling($klantid) {
+        
+        $sql = "select afhaaldatum, bedrag, produktid, aantal from bestelling inner join bestelregel on bestelling.bestelnr = bestelregel.bestelnr where klantid = :klantid and afhaaldatum >= CURDATE()";
+        $dbh = new PDO("mysql:host=localhost;dbname=bakkerij;charset=utf8", "root", "");
+         $stmt = $dbh->prepare($sql);
+         $stmt->execute(array(':klantid' => $klantid));  
+         
+        $bestelling = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $bestelling;
+    }
+}

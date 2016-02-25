@@ -2,10 +2,17 @@
 
 
 
-function mijnautoloader($klasNaam) {
+function mijnautoloadervdab($klasNaam) {
 	$volledigeKlasNaam = $klasNaam . ".php";
 	require_once($volledigeKlasNaam);
 }
 
-spl_autoload_register("mijnautoloader");
+function mijnautoloaderthuis($klasNaam)
+{
+    $klasNaam = str_replace('\\', DIRECTORY_SEPARATOR, $klasNaam);
+
+    include $klasNaam . '.php';
+}
+
+spl_autoload_register("mijnautoloaderthuis");
 
