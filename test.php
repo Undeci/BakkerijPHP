@@ -10,10 +10,13 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <pre>
         <?php
-        var_dump($array);
+//        var_dump($array);
         var_dump($_POST);
-//        var_dump($clean);
+        var_dump($array);
+        var_dump($clean);
         ?>
+        </pre>
     </body>
 </html>

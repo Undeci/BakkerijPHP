@@ -206,6 +206,11 @@ tr {
 tr:last-child th:last-child {
     color: #eb003b;
 }
+#mandform input[type="submit"] {
+width: 11em; 
+font-size: 1.2em;
+}
+
 
 /*
 Afrekenen

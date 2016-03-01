@@ -29,6 +29,9 @@ class BestelService {
 
         $security = new SecurityService();
         $clean = $security->clean($_POST);
+        
+//         include_once 'test.php';
+//        exit();
 
         $besteldao = new BestelDAO();
         $besteldao->bestel($_SESSION["klant"]["klantid"], $clean["afhaaldatum"], $_SESSION["bestelling"]);

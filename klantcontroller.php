@@ -2,6 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
+if (session_status() != 1)
+session_destroy();
 session_start();
 require 'Autoloader.php';
 

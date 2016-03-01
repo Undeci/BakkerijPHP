@@ -1,7 +1,6 @@
 <?php
 
 
-
 function mijnautoloadervdab($klasNaam) {
 	$volledigeKlasNaam = $klasNaam . ".php";
 	require_once($volledigeKlasNaam);
@@ -14,5 +13,5 @@ function mijnautoloaderthuis($klasNaam)
     include $klasNaam . '.php';
 }
 
-spl_autoload_register("mijnautoloaderthuis");
+spl_autoload_register("mijnautoloadervdab");
 

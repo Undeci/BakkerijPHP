@@ -26,6 +26,8 @@ class KlantService {
         $security = new SecurityService();
         $clean = $security->clean($_POST);
         
+//        include_once 'test.php';
+//        exit();
         
 
         $klantDAO = new KlantenDAO();
