@@ -1,9 +1,9 @@
 <?php
 
-namespace Business;
+namespace Model\Business;
 
-use Data\BestelDAO;
-use Business\SecurityService;
+use Model\Data\BestelDAO;
+use Model\Business\SecurityService;
 
 class BestelService {
 

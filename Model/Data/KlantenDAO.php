@@ -1,6 +1,6 @@
 <?php
 
-namespace Data;
+namespace Model\Data;
 require_once 'DBConfig.php';
 
 use DBConfig;

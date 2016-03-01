@@ -1,0 +1,309 @@
+/* 
+    Created on : Feb 28, 2016, 11:36:16 PM
+    Author     : Alain Urlings
+*/
+
+* {box-sizing: border-box; margin: 0;}
+.flex {display: flex;}
+.columnflex {display: flex; flex-direction: column;}
+.wrapflex {display: flex; flex-wrap: wrap;}
+.autoflex {display: flex; margin: auto;}
+
+body {
+    background-color: #131313;
+    color: #DED0A6;
+}
+.alert {
+    color: #7A5640;
+    text-align: center;
+    font-size: 1.5em;
+}
+h1{    
+    margin: 1em auto;
+    text-align: center;
+    color: #DED0A6;  
+}
+input[type="submit"] {
+    background-color: #4A3630;
+    cursor: pointer;
+    border: 1px solid transparent;
+    color: #DED0A6;
+    border-radius: 5px;  
+}
+header {
+    height: 8em;
+    margin-bottom: 1em;
+}
+header span {
+    width: 9em;
+    text-align: center;
+    margin: auto;
+    font-size: 3em;
+    padding: .6em;
+    color: #DED0A6;
+    background-color: #4A3630;
+    border: 2px solid #DED0A6;
+    border-radius: 50%;   
+}
+header input[type="submit"] {
+    position: fixed;
+    left: 0;
+    top: 0;
+    font-size: 1.5em;
+    width: 6em;
+    height: 4em;
+    background-color: #4A3630;
+    color: #DED0A6;
+    border: #DED0A6 solid 2px;
+}
+
+/*
+Aanmelden
+*/
+
+.Aanmelden {
+
+    font-size: 1.2em;
+    width: 35em;
+    color: #DED0A6;
+}
+fieldset {
+    border-radius: .5em;
+    width: 35em;
+    margin-top: 2em;
+    border: 2px solid #DED0A6;    
+}
+legend {  
+    color:#DED0A6;
+    padding: .1em .4em;
+    border: 2px solid #DED0A6;
+    border-radius: 15px;
+    font-size: .8em;
+}
+#registreer, #aanmelden, #wachtwoord {
+    justify-content: center;
+    width: 26em;
+    padding-top: 1.5em;    
+}
+#registreer label, #aanmelden label {
+    width: 7em;
+    margin-bottom: 1em;
+}
+#registreer input:not([type="submit"]), select, #aanmelden input:not([type="submit"]) {
+    width: 19em;
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+#wachtwoord label {
+    width: 10em;
+    margin-bottom: 1em;
+}
+#wachtwoord input:not([type="submit"]) {
+    width: 16em;
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+#registreer input[type="submit"] , #aanmelden input[type="submit"], #wachtwoord input[type="submit"], #afrekenen input[type="submit"] {
+    width: 7em;
+    padding: .4em;
+    font-size: 1em;
+}
+input[type="submit"]:hover {
+    background-color: rgba(74,54,48,.8);
+    color: #DED0A6;
+}
+input:not([type="submit"]) {
+    background-color: transparent;
+    color: #DED0A6;
+    border: 1px solid transparent;
+}
+input:focus {
+    background-color: transparent;
+    outline: none;
+}
+input:hover {
+    background-color: #191919;    
+    border-radius: 6px;
+}
+select {
+    background-color: #131313;
+    color: #DED0A6;
+    border: none;
+    outline: none;
+}
+
+/*
+Toonbank
+*/
+
+#toonbank {
+    width: 20em;
+    margin: 2em auto;
+    font-size: 2em;   
+}
+#toonbank div {
+    width: 20em;
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5em;
+}
+span {
+    width: 15em;
+}
+#toonbank input[type="number"]{
+    width:2em;
+    font-size: 1em;
+}
+#toonbank input[type="number"]:hover {
+    background-color: #131313;
+}
+#toonbank input[type="submit"], #mandform input[type="submit"]{
+    align-self: center;
+    margin-top: 1em;
+    font-size: .8em;
+    width: 11em;
+    padding: .4em;
+}   
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    cursor:pointer;
+    display:block;
+    width:8px;
+    color: #DED0A6;
+    text-align:center;
+    position:relative;
+}
+input[type=number]::-webkit-inner-spin-button:before,
+input[type=number]::-webkit-inner-spin-button:after {
+    content: "^";
+    position:absolute;
+    right: 0;
+    font-family:monospace;
+}
+input[type=number]::-webkit-inner-spin-button:before {
+    top:0px;
+}
+input[type=number]::-webkit-inner-spin-button:after {
+    bottom:0px;
+    -webkit-transform: rotate(180deg);
+}
+
+/*
+Winkelmandje
+*/
+
+table {
+    margin: auto;
+    width: 45em;
+    font-size: 1em;
+    text-align: center;
+    border-color: #DED0A6;
+/*    background-color: #4A3630;*/
+}
+tr {
+    height: 3em;
+}
+tr:last-child th:last-child {
+    color: #eb003b;
+}
+
+/*
+Afrekenen
+*/
+
+#bestelling {
+    width: 16em;
+    border-top: dashed 1px #131313;
+    background-color: #DED0A6;
+    color: #444;
+    line-height: 180%;
+    text-indent: 1em;
+    font-size: 1.5em;
+    margin-bottom: 3em;
+    padding: 1em 0;
+}
+#bestelling > div:first-child {
+    margin: auto;
+    font-weight: bold;
+    text-indent: 0;
+}
+#bestelling > div:last-child {
+    justify-content: space-between;
+    margin-right: 1em;
+    font-weight: bold;
+}
+#bestelling > div:nth-last-of-type(2) {
+    align-self: flex-end;
+    margin-right: 1em;
+    line-height: 50%;
+}
+.lijn {
+    justify-content: space-between;
+    margin-right: 1em;
+}
+#afrekenen {
+    width: 32em;
+    justify-content: space-between;
+    font-size: 1.4em;
+    align-items: baseline;
+}
+#afrekenen select {
+    width: 8em;
+    font-size: 1.2em;  
+}
+
+/*
+Lopende bestelling
+*/
+
+#lopende {
+    color: black;
+    width: 50em;
+}
+.lopende p:first-child, .lopende p:nth-child(2) {
+    text-align: center;
+    font-weight: bold;
+    text-indent: 0;
+}
+.lopende { 
+    width: 15em;
+    border-top: dashed 1px #131313;
+    border-bottom: dashed 1px #131313;
+    margin: .5em .5em;
+    background-color: #DED0A6;
+    line-height: 150%;
+    text-indent: 1.5em;
+    font-size: 1.5em;
+}
+.lopende form {
+    margin-top:  auto;
+    align-self: center;
+    margin-bottom: .5em;
+    text-indent: 0;
+}
+#annuleer input[type="submit"] {
+    background-color: #141414;
+    color: antiquewhite;
+}
+
+/*
+Block
+*/
+
+.block {
+    background-color: white;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;    
+}
+.block div {
+    height: 80vh;
+    width: 80vw;
+    margin: auto;
+}
+.block p {
+    color: black;
+    font-size: 2rem;
+    margin: 2rem auto;
+}

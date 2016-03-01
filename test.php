@@ -11,8 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        var_dump($array);
         var_dump($_POST);
-        var_dump($clean);
+//        var_dump($clean);
         ?>
     </body>
 </html>

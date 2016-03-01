@@ -5,12 +5,13 @@ ini_set('display_errors', '1');
 session_start();
 require 'Autoloader.php';
 
-use Business\BestelService;
-use Business\KlantService;
+use Model\Business\BestelService;
+use Model\Business\KlantService;
 
-if (isset($_GET["wachtwoord"])) {
-    echo 'Je wachtwoord is ' . $_SESSION["wachtwoord"];
-    include_once 'Presentation/wachtwoord.php';
+if (isset($_GET["wachtwoord"])) {    
+    include_once 'View/header.php';
+    echo '<p class="alert">Je wachtwoord is ' . $_SESSION["wachtwoord"] . '</p>';
+    include_once 'View/wachtwoord.php';
 }
 if (isset($_POST["nieuwwachtwoord"])) {
     $service = new KlantService();
@@ -18,37 +19,44 @@ if (isset($_POST["nieuwwachtwoord"])) {
 }
 if (isset($_POST["registreer"])) {
     $service = new KlantService();
-    $nieuweklant = $service->setKlant($_POST);
+    $nieuweklant = $service->setKlant();
     if ($nieuweklant)
         header("location: klantcontroller.php?wachtwoord");
-    else {
-        echo 'Reeds geregistreerd bij BakkerijPHP';
-        include_once 'Presentation/Aanmelden.php';   
+    else {       
+        $service = new KlantService();
+        $postcodes = $service->getcities();
+        include_once 'View/header.php';
+         echo '<p class="alert">Reeds geregistreerd bij BakkerijPHP</p>';
+        include_once 'View/Aanmelden.php';
     }
 } elseif (isset($_POST["aanmelden"])) {
     $service = new KlantService();
     $service->verifieerklant($_POST);
     $bestel = new BestelService();
     $afhaaldata = $bestel->getafhaaldata();
-
-    if (count($afhaaldata["vrijedata"]) == 0) {
-        echo 'U kan geen extra bestellingen plaatsen!';
+    if (count($afhaaldata["vrijedata"]) == 0) {      
         $overzicht = $bestel->getbestelling();
-        include_once 'Presentation/lopendebestelling.php';
-        include_once 'Presentation/Home.html';
-    } elseif ($_SESSION["klant"]["voornaam"] && $_SESSION["klant"]["block"] == 0) {        
+        include_once 'View/header.php';
+         echo '<p class="alert">U kan geen extra bestellingen plaatsen!</p>';
+        include_once 'View/lopendebestelling.php';
+    } elseif ($_SESSION["klant"]["voornaam"] && $_SESSION["klant"]["block"] == 0) {
         $service = new BestelService();
-        $service->getprodukten();        
-        include 'Presentation/toonbank.php';
-        include 'Presentation/Home.html';
+        $service->getprodukten();
+        $aanpas = false;
+        include_once 'View/header.php';
+        echo '<p class="alert">Welkom ' . htmlentities($_SESSION["klant"]["voornaam"]) . '</p>';
+        include 'View/toonbank.php';
     } elseif (!$_SESSION["klant"]["voornaam"]) {
-        echo 'Fout bij het aanmelden';
-        include 'Presentation/Aanmelden.php';
-    } elseif ($_SESSION["klant"]["block"] == 1) {
-        include_once 'Presentation/Block.php';
-    }
+        $service = new KlantService();
+        $postcodes = $service->getcities();
+        include_once 'View/header.php';
+        echo '<p class="alert">Fout bij het aanmelden</p>';
+        include 'View/Aanmelden.php';
+    } elseif ($_SESSION["klant"]["block"] == 1)
+        include_once 'View/Block.php';
 } else {
     $service = new KlantService();
     $postcodes = $service->getcities();
-    include 'Presentation/Aanmelden.php';
+    include_once 'View/header.php';
+    include 'View/Aanmelden.php';
 }

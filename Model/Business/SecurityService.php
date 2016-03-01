@@ -1,10 +1,10 @@
 <?php
 
-namespace Business;
+namespace Model\Business;
 
-//require_once 'Business/KlantService.php';
+require_once 'Model/Business/KlantService.php';
 
-use Business\KlantService;
+use Model\Business\KlantService;
 
 class SecurityService {
 

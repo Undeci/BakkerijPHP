@@ -1,9 +1,9 @@
 <?php
 
-namespace Business;
+namespace Model\Business;
 
-use Data\KlantenDAO;
-use Business\SecurityService;
+use Model\Data\KlantenDAO;
+use Model\Business\SecurityService;
 
 class KlantService {
 
@@ -13,9 +13,7 @@ class KlantService {
         return $gemeentes;
     }
 
-    public function setKlant($array) {
-        
-        
+    public function setKlant() {
 
         $wachtwoord = "";
         $values = str_split("ABCDEFGHIJKLNOPQRSTUVWXYZ0123456789");

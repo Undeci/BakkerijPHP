@@ -1,6 +1,6 @@
 <?php
 
-namespace Data;
+namespace Model\Data;
 require_once 'DBConfig.php';
 use DBConfig;
 use PDO;
@@ -14,6 +14,7 @@ class BestelDAO {
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         $_SESSION["produkten"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $dbh = null;
                 
     }
 
