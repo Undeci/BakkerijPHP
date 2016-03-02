@@ -14,7 +14,7 @@ and open the template in the editor.
         <?php
 //        var_dump($array);
         var_dump($_POST);
-        var_dump($array);
+        var_dump($filter);
         var_dump($clean);
         ?>
         </pre>

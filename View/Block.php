@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <link href="View/Bakkerij.css" rel="stylesheet" type="text/css"/>
+        <link href="Bakkerij.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="block">  
         <div class="columnflex">

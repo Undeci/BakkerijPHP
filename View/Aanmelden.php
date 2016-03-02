@@ -17,13 +17,13 @@
                     <label for="email">Email: </label>
                     <?php
                     if (isset($_COOKIE["email"])) {
-                        echo '<input type="email" name="email" value="' . $_COOKIE["email"] . '" required>';
+                        echo '<input type="email" name="email" value="' . $_COOKIE["email"] . '" pattern=".+@.+\..+" required>';
                     } else
-                        echo '<input type="email" name="email" required>';
+                        echo '<input type="email" name="email" pattern=".+@.+[\.].+" required>';
                     ?>
 
                     <label for="wachtwoord">Paswoord: </label>
-                    <input type="password" name="wachtwoord" required>
+                    <input type="password" name="wachtwoord" maxlength="40" required>
                     <input type="submit" name="aanmelden" value="Aanmelden">
                     </div>
                 </fieldset>
@@ -33,14 +33,13 @@
                     <legend>Registreren</legend>
                     <div  class="wrapflex autoflex" id="registreer">
                         <label for="email">Email: </label>
-                        <input type="email" name="email" id="email" required/> 
+                        <input type="email" name="email" id="email" pattern=".+@.+\..+"  maxlength="40" required/> 
                         <label for="voornaam">Voornaam: </label>
-                        <input type="text" name="voornaam" id="voornaam" required /> 
+                        <input type="text" name="voornaam" id="voornaam" maxlength="40" required /> 
                         <label for="naam">Naam: </label>
-                        <input type="text" name="naam" id="naam" required /> 
+                        <input type="text" name="naam" id="naam" maxlength="40" required /> 
                         <label for="adres">Adres: </label>
-                        <input type="text" name="adres" id="adres" required /> 
-
+                        <input type="text" name="adres" id="adres" maxlength="40" required /> 
                         <label for="postcodeid">Gemeente: </label>
                         <select name="postcodeid">
 
