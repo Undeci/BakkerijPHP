@@ -29,9 +29,6 @@ class BestelService {
 
         $security = new SecurityService();
         $clean = $security->clean($_POST);
-        
-//         include_once 'test.php';
-//        exit();
 
         $besteldao = new BestelDAO();
         $besteldao->bestel($_SESSION["klant"]["klantid"], $clean["afhaaldatum"], $_SESSION["bestelling"]);
@@ -40,17 +37,13 @@ class BestelService {
     public function getafhaaldata() {
 
         $bestelDAO = new BestelDAO();
-        $afhaal = $bestelDAO->getafhaaldatabyklantid($_SESSION["klant"]["klantid"]);
-
-        $afhaaldata["afhaal"] = $afhaal;
+        $bestelDAO->getafhaaldatabyklantid($_SESSION["klant"]["klantid"]);
 
         $tomorrow = date("Y-m-d", strtotime("tomorrow"));
         $tomorrowplusone = date("Y-m-d", strtotime("+2 Days"));
         $maxafhaal = date("Y-m-d", strtotime("+3 Days"));
-
-        $afhaaldata["vrijedata"] = array_diff(array($tomorrow, $tomorrowplusone, $maxafhaal), $afhaaldata["afhaal"]);
-
-        return $afhaaldata;
+        
+        $_SESSION["vrijedata"] = array_diff(array($tomorrow, $tomorrowplusone, $maxafhaal), $_SESSION["afhaaldata"]);
     }
 
     public function getbestelling() {

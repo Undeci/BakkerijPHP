@@ -25,10 +25,6 @@ class KlantService {
 
         $security = new SecurityService();
         $clean = $security->clean($_POST);
-        
-//        include_once 'test.php';
-//        exit();
-        
 
         $klantDAO = new KlantenDAO();
         $nieuweklant = $klantDAO->setklant($clean["adres"], $clean["email"], $clean["naam"], $clean["voornaam"], $clean["postcodeid"], $wachtwoordsha1);

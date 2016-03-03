@@ -21,24 +21,26 @@ class SecurityService {
                 break;
             case "Bestel": $clean = cleanBestel($clean);
                 break;
-            case "Aanpassen": $clean = cleanWachtwoord($clean);
-                break;
         }
 
-        return $clean;
-    }
-}
-
-function cleanXS($array) {
-
-    foreach ($array as $key => $value) {
-        if (preg_match("/<script>/i", $value)) {
+        if ($clean === False) {
             if (isset($_SESSION["klant"]["klantid"])) {
                 $service = new KlantService();
                 $service->blockklant($_SESSION["klant"]["klantid"]);
             }
             header('location: View/Block.php');
             exit(0);
+        } else
+            return $clean;
+    }
+}
+
+function cleanXS($array) {
+
+    foreach ($array as $key => $value) {
+        if (preg_match("/<script>/i", $value) || strlen($value) > 40) {
+            $clean = False;
+            break;
         } else {
             $clean[$key] = $value;
         }
@@ -48,9 +50,6 @@ function cleanXS($array) {
 
 function cleanRegistreer($clean) {
 
-    
-    
-    
     $filter = array(
         'email' => FILTER_VALIDATE_EMAIL,
         'postcodeid' => array('filter' => FILTER_VALIDATE_INT,
@@ -58,34 +57,42 @@ function cleanRegistreer($clean) {
                 'max_range' => 2904)
         ),
     );
-    if (in_array(False, filter_var_array($clean, $filter))) {
-        header('location: View/Block.php');
-        exit(0);
-    }
-    $clean = array_replace($clean, filter_var_array($clean, $filter));
+    if (!in_array(False, filter_var_array($clean, $filter)))
+        $clean = array_replace($clean, filter_var_array($clean, $filter));
+    else
+        $clean = false;
 
     return $clean;
 }
 
 function cleanBevestigen($clean) {
-
+    
+    if (!in_array($clean["afhaaldatum"], $_SESSION["vrijedata"]))
+            $clean = False;
+    
     return $clean;
 }
 
 function cleanAanmelden($clean) {
-    
-    $clea["email"] = filter_var($clean["email"], FILTER_VALIDATE_EMAIL);
-    
+
+    if (filter_var($clean["email"], FILTER_VALIDATE_EMAIL)) {
+        $clean["email"] = filter_var($clean["email"], FILTER_VALIDATE_EMAIL);
+    } else
+        $clean = False;
 
     return $clean;
 }
 
 function cleanBestel($clean) {
-
+  
+    for ($i=1; $i < count($clean); $i++) {
+        $clean[$i] = filter_var((int)$clean[$i], FILTER_VALIDATE_INT, array( 'options' => array('min_range' => 0, 'max_range' => 99)));
+        if ($clean[$i] === False) {
+            $clean = False;
+            break;
+        }
+    }
+    
     return $clean;
 }
 
-function cleanAanpassen($clean) {
-
-    return $clean;
-}

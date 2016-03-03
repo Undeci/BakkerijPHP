@@ -15,13 +15,13 @@
 
         foreach ($overzicht as $key => $value) {
 
-        echo '<div class="lopende columnflex"><p>' . $afhaaldata["afhaal"][$i] . '</p>';
+        echo '<div class="lopende columnflex"><p>' . $_SESSION["afhaaldata"][$i] . '</p>';
         echo '<p>' . $key . ' €';
         foreach ($value as $bestelling) {
         echo '<p>' . $bestelling["naam"] . ': ' .  $bestelling["aantal"] . '</p>';
         }
-        if ($afhaaldata["afhaal"][$i] != $now) {
-           echo '<form id="annuleer" action="bestelcontroller.php" method="POST"><input type="text" name="annuleer" value="' . $afhaaldata["afhaal"][$i] . '" hidden><input type="submit" value="annuleer"></form>';
+        if ($_SESSION["afhaaldata"][$i] != $now) {
+           echo '<form id="annuleer" action="bestelcontroller.php" method="POST"><input type="text" name="annuleer" value="' . $_SESSION["afhaaldata"][$i] . '" hidden><input type="submit" value="annuleer"></form>';
             }
             echo '</div>';
             $i++;

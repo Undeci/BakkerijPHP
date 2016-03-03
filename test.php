@@ -13,9 +13,14 @@ and open the template in the editor.
         <pre>
         <?php
 //        var_dump($array);
+var_dump($_SESSION);
+
+        
         var_dump($_POST);
-        var_dump($filter);
         var_dump($clean);
+        
+        var_dump(count($clean));
+       
         ?>
         </pre>
     </body>

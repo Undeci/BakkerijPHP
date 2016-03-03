@@ -46,10 +46,8 @@ class BestelDAO {
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':klantid' => $klantid));
-        $afhaaldata = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $_SESSION["afhaaldata"] = $stmt->fetchAll(PDO::FETCH_COLUMN);
         $dbh = null;
-
-        return $afhaaldata;
     }
 
     public function getbestelling($klantid) {

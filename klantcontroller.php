@@ -35,8 +35,8 @@ if (isset($_POST["registreer"])) {
     $service = new KlantService();
     $service->verifieerklant($_POST);
     $bestel = new BestelService();
-    $afhaaldata = $bestel->getafhaaldata();
-    if (count($afhaaldata["vrijedata"]) == 0) {      
+    $bestel->getafhaaldata();
+    if (count($_SESSION["vrijedata"]) == 0) {      
         $overzicht = $bestel->getbestelling();
         include_once 'View/header.php';
          echo '<p class="alert">U kan geen extra bestellingen plaatsen!</p>';

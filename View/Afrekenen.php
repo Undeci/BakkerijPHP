@@ -32,7 +32,7 @@
                     <select name="afhaaldatum">
 
 <?php
-foreach ($afhaaldata["vrijedata"] as $datum)
+foreach ($_SESSION["vrijedata"] as $datum)
     echo '<option value="' . $datum . '">' . $datum . '</option>';
 ?>
                     </select> 

@@ -19,7 +19,7 @@ if (isset($_POST["bestelling"])) {
 }
 if (isset($_POST["afrekenen"])) {
     $bestel = new BestelService();
-    $afhaaldata = $bestel->getafhaaldata();
+    $bestel->getafhaaldata();
     include_once 'View/header.php';
     include_once 'View/Afrekenen.php';
 }
@@ -32,14 +32,14 @@ if (isset($_POST["bevestigen"])) {
     $bestel = new BestelService();
     $bestel->bestel();
     $bestel = new BestelService();
-    $afhaaldata = $bestel->getafhaaldata();
+    $bestel->getafhaaldata();
     $overzicht = $bestel->getbestelling();
     include_once 'View/header.php';
     include_once 'View/lopendebestelling.php';
 }
 if (isset($_POST["lopende"])) {
     $bestel = new BestelService();
-    $afhaaldata = $bestel->getafhaaldata();
+    $bestel->getafhaaldata();
     $overzicht = $bestel->getbestelling();
     include_once 'View/header.php';
     include_once 'View/lopendebestelling.php';
@@ -47,7 +47,7 @@ if (isset($_POST["lopende"])) {
 if (isset($_POST["annuleer"])) {
     $bestel = new BestelService();
     $bestel->annuleer($_POST["annuleer"]);    
-    $afhaaldata = $bestel->getafhaaldata();
+    $bestel->getafhaaldata();
     $overzicht = $bestel->getbestelling();
     include_once 'View/header.php';
     echo '<p class="alert">Bestelling van ' . htmlentities($_POST["annuleer"]) . ' geannuleerd</p>';
