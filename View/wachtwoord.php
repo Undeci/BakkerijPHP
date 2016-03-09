@@ -1,5 +1,5 @@
+<!--alain.urlings-->
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -11,9 +11,8 @@
              <fieldset>
                 <legend>Wachtwoord aanpassen</legend>
                  <div class="wrapflex autoflex" id="wachtwoord">
-                     <label for="nieuwwachtwoord">Nieuw wachtwoord: </label><input type="password" name="nieuwwachtwoord" autofocus>
-                 
-            <input type="submit" value="Aanpassen">
+                     <label for="nieuwwachtwoord">Nieuw wachtwoord: </label><input type="password" name="nieuwwachtwoord" autofocus>                 
+            <input type="submit" name="wachtwoord" value="Aanpassen">
             </div>
              </fieldset>
         </form>

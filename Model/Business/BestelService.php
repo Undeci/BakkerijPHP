@@ -1,7 +1,6 @@
 <?php
-
 namespace Model\Business;
-
+//alain.urlings
 use Model\Data\BestelDAO;
 use Model\Business\SecurityService;
 
@@ -13,10 +12,8 @@ class BestelService {
         $produkten = $bestelDAO->getprodukten();
     }
 
-    public function maakbestelling() {
+    public function maakbestelling($clean) {
 
-        $security = new SecurityService();
-        $clean = $security->clean($_POST);
         $_SESSION["bestelling"]["totaal"] = 0;
 
         for ($i = 1; $i < count($_SESSION["produkten"]) + 1; $i++) {
@@ -25,10 +22,7 @@ class BestelService {
         }
     }
 
-    public function bestel() {
-
-        $security = new SecurityService();
-        $clean = $security->clean($_POST);
+    public function bestel($clean) {
 
         $besteldao = new BestelDAO();
         $besteldao->bestel($_SESSION["klant"]["klantid"], $clean["afhaaldatum"], $_SESSION["bestelling"]);
@@ -54,10 +48,10 @@ class BestelService {
         return $bestelling;
     }
 
-    public function annuleer($afhaaldatum) {
-
+    public function annuleer($annul) {
+      
         $besteldao = new BestelDAO();
-        $besteldao->annuleer($afhaaldatum);
-    }
+        $besteldao->annuleer($annul);
 
+    }
 }

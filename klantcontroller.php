@@ -1,45 +1,57 @@
+<!--alain.urlings-->
 <?php
+require 'Model/Business/Errorhandler.php';
+require 'Model/Business/Autoloader.php';
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 if (session_status() != 1)
-session_destroy();
+    session_destroy();
 session_start();
-require 'Autoloader.php';
 
 use Model\Business\BestelService;
 use Model\Business\KlantService;
+use Model\Business\SecurityService;
 
-if (isset($_GET["wachtwoord"])) {    
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $security = new SecurityService();
+    $clean = $security->clean($_REQUEST);
+}
+if (isset($_GET["wachtwoord"])) {
     include_once 'View/header.php';
     echo '<p class="alert">Je wachtwoord is ' . $_SESSION["wachtwoord"] . '</p>';
     include_once 'View/wachtwoord.php';
 }
-if (isset($_POST["nieuwwachtwoord"])) {
+if (isset($clean["nieuwwachtwoord"])) {
+
     $service = new KlantService();
-    $service->updatewachtwoord(sha1($_POST["nieuwwachtwoord"]), $_COOKIE["email"]);
+    $service->updatewachtwoord(sha1($clean["nieuwwachtwoord"]), $_COOKIE["email"]);
 }
-if (isset($_POST["registreer"])) {
+if (isset($clean["registreer"])) {
+
     $service = new KlantService();
-    $nieuweklant = $service->setKlant();
+    $nieuweklant = $service->setKlant($clean);
     if ($nieuweklant)
         header("location: klantcontroller.php?wachtwoord");
-    else {       
+    else {
         $service = new KlantService();
         $postcodes = $service->getcities();
         include_once 'View/header.php';
-         echo '<p class="alert">Reeds geregistreerd bij BakkerijPHP</p>';
+        echo '<p class="alert">Reeds geregistreerd bij BakkerijPHP</p>';
         include_once 'View/Aanmelden.php';
     }
-} elseif (isset($_POST["aanmelden"])) {
+} elseif (isset($clean["aanmelden"])) {
+
     $service = new KlantService();
-    $service->verifieerklant($_POST);
+    $service->verifieerklant($clean);
     $bestel = new BestelService();
     $bestel->getafhaaldata();
-    if (count($_SESSION["vrijedata"]) == 0) {      
+    if (count($_SESSION["vrijedata"]) == 0) {
         $overzicht = $bestel->getbestelling();
         include_once 'View/header.php';
-         echo '<p class="alert">U kan geen extra bestellingen plaatsen!</p>';
+        echo '<p class="alert">U kan geen extra bestellingen plaatsen!</p>';
         include_once 'View/lopendebestelling.php';
     } elseif ($_SESSION["klant"]["voornaam"] && $_SESSION["klant"]["block"] == 0) {
         $service = new BestelService();
@@ -62,3 +74,6 @@ if (isset($_POST["registreer"])) {
     include_once 'View/header.php';
     include 'View/Aanmelden.php';
 }
+
+
+    

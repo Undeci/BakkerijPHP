@@ -1,3 +1,4 @@
+<!--alain.urlings-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,10 +7,7 @@
         <link href="View/Bakkerij.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-
         <div class="columnflex wrapflex autoflex Aanmelden">
-
-
             <form class="flex" action="klantcontroller.php" name="aanmelden" method="post">
                 <fieldset>
                     <legend>Aanmelden</legend>
@@ -42,7 +40,6 @@
                         <input type="text" name="adres" id="adres" maxlength="40" required /> 
                         <label for="postcodeid">Gemeente: </label>
                         <select name="postcodeid">
-
                             <?php
                             foreach ($postcodes as $value) {
 

@@ -1,6 +1,5 @@
+<!--alain.urlings-->
 <?php
-
-
 function mijnautoloadervdab($klasNaam) {
 	$volledigeKlasNaam = $klasNaam . ".php";
 	require_once($volledigeKlasNaam);

@@ -14,7 +14,8 @@ body {
     color: #DED0A6;
 }
 .alert {
-    color: #7A5640;
+    color: red;
+/*    text-shadow: 1px 1px #DED0A6;*/
     text-align: center;
     font-size: 1.5em;
 }
@@ -193,15 +194,20 @@ Winkelmandje
 */
 
 table {
+    border-collapse: collapse;
     margin: auto;
     width: 45em;
     font-size: 1em;
     text-align: center;
-    border-color: #DED0A6;
-/*    background-color: #4A3630;*/
+    border: 2px solid #DED0A6;
+    background-color: #4A3630;
+}
+td, th {
+    border: 2px solid #DED0A6;
 }
 tr {
     height: 3em;
+    
 }
 tr:last-child th:last-child {
     color: #eb003b;

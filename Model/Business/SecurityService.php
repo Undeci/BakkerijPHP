@@ -1,27 +1,33 @@
 <?php
-
 namespace Model\Business;
-
-require_once 'Model/Business/KlantService.php';
-
+//alain.urlings
 use Model\Business\KlantService;
 use Model\Business\SecurityService;
 
 class SecurityService {
-
+    
     public function clean($array) {
 
-        $clean = cleanXS($array);
-        switch (end($clean)) {
-            case "Registreer": $clean = cleanRegistreer($clean);
-                break;
-            case "Bevestigen": $clean = cleanBevestigen($clean);
-                break;
-            case "Aanmelden": $clean = cleanAanmelden($clean);
-                break;
-            case "Bestel": $clean = cleanBestel($clean);
-                break;
-            default: $clean = false;
+        $acceptableposts = array("Registreer", "Aanmelden", "Bevestigen", "annuleer", "Bestel", "lopende bestellingen", "Aanpassen", "aanpassen", "afrekenen");
+
+        if (!in_array(end($array), $acceptableposts))
+            $clean = False;
+        else {
+            $clean = cleanXS($array);
+            switch (end($clean)) {
+                case "Registreer": $clean = cleanRegistreer($clean);
+                    break;
+                case "Bevestigen": $clean = cleanBevestigen($clean);
+                    break;
+                case "Aanmelden": $clean = cleanAanmelden($clean);
+                    break;
+                case "Bestel": $clean = cleanBestel($clean);
+                    break;
+                case "Aanpassen":
+                    break;
+                case "annuleer": $clean = cleanAnnuleer($clean);
+                    break;
+            }
         }
 
         if ($clean === False) {
@@ -67,10 +73,10 @@ function cleanRegistreer($clean) {
 }
 
 function cleanBevestigen($clean) {
-    
+
     if (!in_array($clean["afhaaldatum"], $_SESSION["vrijedata"]))
-            $clean = False;
-    
+        $clean = False;
+
     return $clean;
 }
 
@@ -85,15 +91,22 @@ function cleanAanmelden($clean) {
 }
 
 function cleanBestel($clean) {
-  
-    for ($i=1; $i < count($clean); $i++) {
-        $clean[$i] = filter_var((int)$clean[$i], FILTER_VALIDATE_INT, array( 'options' => array('min_range' => 0, 'max_range' => 99)));
+
+    for ($i = 1; $i < count($clean); $i++) {
+        $clean[$i] = filter_var((int) $clean[$i], FILTER_VALIDATE_INT, array('options' => array('min_range' => 0, 'max_range' => 99)));
         if ($clean[$i] === False) {
             $clean = False;
             break;
         }
     }
-    
+
     return $clean;
 }
 
+function cleanAnnuleer($clean) {
+
+    if (!in_array($clean["annuleer"], $_SESSION["afhaaldata"]))
+        $clean = False;
+
+    return $clean;
+}

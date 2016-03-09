@@ -1,14 +1,13 @@
 <?php
-
 namespace Model\Data;
+//alain.urlings
 require_once 'DBConfig.php';
 
 use DBConfig;
 use PDO;
 
 class KlantenDAO {
-    
-    
+        
     public function getcities() {
         
         $sql = "select * from cities";

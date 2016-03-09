@@ -1,3 +1,4 @@
+<!--alain.urlings-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,7 +8,7 @@
     </head>
     <body>
         <h1>Winkelmandje</h1>        
-        <table border="2">
+        <table>
             <tr>
                 <th>Produkt</th>
                 <th>Eenheidsprijs</th>
@@ -17,7 +18,7 @@
             <?php
             foreach ($_SESSION["produkten"] as $key => $produkt) {
                 ?>
-                <tr><td> <?php echo $produkt["naam"] ?></td><td><?php echo $produkt["prijs"] ?></td><td><?php echo $_SESSION["bestelling"][$key + 1] ?></td><td><?php echo $produkt["prijs"] * $_SESSION["bestelling"][$key + 1] . ' €' ?></td></tr>                       
+                <tr><td> <?php echo $produkt["naam"] ?></td><td><?php echo $produkt["prijs"] . ' €'; ?></td><td><?php echo $_SESSION["bestelling"][$key + 1] ?></td><td><?php echo $produkt["prijs"] * $_SESSION["bestelling"][$key + 1] . ' €' ?></td></tr>                       
                 <?php
             }
             ?>

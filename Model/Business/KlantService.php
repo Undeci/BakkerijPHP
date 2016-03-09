@@ -1,7 +1,6 @@
+<!--alain.urlings-->
 <?php
-
 namespace Model\Business;
-
 use Model\Data\KlantenDAO;
 use Model\Business\SecurityService;
 
@@ -13,22 +12,17 @@ class KlantService {
         return $gemeentes;
     }
 
-    public function setKlant() {
+    public function setKlant($clean) {
 
         $wachtwoord = "";
         $values = str_split("ABCDEFGHIJKLNOPQRSTUVWXYZ0123456789");
         for ($i = 0; $i < 6; $i++) {
             $wachtwoord = $wachtwoord . $values[array_rand($values, 1)];
-            $wachtwoordsha1 = sha1($wachtwoord);
             $_SESSION["wachtwoord"] = $wachtwoord;
         }
 
-        $security = new SecurityService();
-        $clean = $security->clean($_POST);
-
         $klantDAO = new KlantenDAO();
-        $nieuweklant = $klantDAO->setklant($clean["adres"], $clean["email"], $clean["naam"], $clean["voornaam"], $clean["postcodeid"], $wachtwoordsha1);
-
+        $nieuweklant = $klantDAO->setklant($clean["adres"], $clean["email"], $clean["naam"], $clean["voornaam"], $clean["postcodeid"], sha1($wachtwoord));
         setcookie("email", $clean["email"], time() + 3600 * 24 * 365);
         
         return $nieuweklant;
@@ -39,18 +33,16 @@ class KlantService {
         $klantDAO->blockklant($klantid);
     }
 
-    public function verifieerklant($array) {
+    public function verifieerklant($clean) {
 
-        $security = new SecurityService();
-        $clean = $security->clean($_POST);
         $klantDAO = new KlantenDAO();
         $_SESSION["klant"] = $klantDAO->verifieerklant($clean["email"], sha1($clean["wachtwoord"]));
         setcookie("email", $clean["email"], time() + 3600 * 24 * 365);
     }
 
     public function updatewachtwoord($nieuwwachtwoord, $email) {
+                
         $klantDAO = new KlantenDAO();
         $klantDAO->updatewachtwoord($nieuwwachtwoord, $email);
     }
-
 }

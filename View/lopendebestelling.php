@@ -1,3 +1,4 @@
+<!--alain.urlings-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +7,6 @@
         <link href="View/Bakkerij.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-
         <h1>volgende bestellingen aktief:</h1>
         <div class="autoflex wrapflex" id="lopende">
         <?php
@@ -21,7 +21,7 @@
         echo '<p>' . $bestelling["naam"] . ': ' .  $bestelling["aantal"] . '</p>';
         }
         if ($_SESSION["afhaaldata"][$i] != $now) {
-           echo '<form id="annuleer" action="bestelcontroller.php" method="POST"><input type="text" name="annuleer" value="' . $_SESSION["afhaaldata"][$i] . '" hidden><input type="submit" value="annuleer"></form>';
+           echo '<form id="annuleer" action="bestelcontroller.php" method="POST"><input type="text" name="annuleer" value="' . $_SESSION["afhaaldata"][$i] . '" hidden><input type="submit" name="annuldatum" value="annuleer"></form>';
             }
             echo '</div>';
             $i++;
