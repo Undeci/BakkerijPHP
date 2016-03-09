@@ -1,6 +1,6 @@
-<!--alain.urlings-->
 <?php
 namespace Model\Business;
+//alain.urlings
 use Model\Data\KlantenDAO;
 use Model\Business\SecurityService;
 
